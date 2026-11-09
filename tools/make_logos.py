@@ -1,66 +1,51 @@
-"""Rebuild the web versions of the FLUXS logo from the two originals.
+"""Rebuild the web versions of the FLUXS logo from the SVG originals.
 
-Run from the repo root after replacing assets/img/logo/fluxs-square.png and
-fluxs-wide.png (cream background, same layout):  python3 tools/make_logos.py
-Needs Pillow and numpy.
+Originals (as provided, do not edit): assets/img/logo/fluxs-symbol.svg,
+fluxs-logo-compact.svg, fluxs-logo-horizontal.svg.
+Run from the repo root on macOS (uses `sips` to rasterize):  python3 tools/make_logos.py
+Needs Pillow.
 """
-from collections import Counter
+import re
+import subprocess
+import tempfile
 
-import numpy as np
 from PIL import Image
 
 D = "assets/img/logo/"
+CREAM = (251, 248, 243)  # logo background colour
 
 
-def colors(path, n=3):
-    """Background (most common colour) and the n most common ink colours."""
-    counts = Counter(Image.open(path).convert("RGB").getdata()).most_common()
-    bg = np.array(counts[0][0], float)
-    inks = [np.array(c, float) for c, _ in counts[1:] if np.linalg.norm(np.array(c) - bg) > 120][:n]
-    return bg, inks
+def raster(svg, width):
+    """SVG -> RGBA PIL image `width` px wide (transparent background)."""
+    with tempfile.NamedTemporaryFile(suffix=".png") as tmp:
+        subprocess.run(["sips", "-s", "format", "png", "--resampleWidth", str(width), svg, "--out", tmp.name],
+                       check=True, capture_output=True)
+        return Image.open(tmp.name).convert("RGBA")
 
 
-def transparent(path):
-    """Unmix each pixel into (nearest ink, alpha) over the background."""
-    bg, inks = colors(path)
-    a = np.asarray(Image.open(path).convert("RGB"), float) - bg
-    best_res = best_t = best_col = None
-    for ink in inks:
-        v = ink - bg
-        t = np.clip((a @ v) / (v @ v), 0, 1)
-        res = np.linalg.norm(a - t[..., None] * v, axis=-1)
-        if best_res is None:
-            best_res, best_t, best_col = res, t, np.broadcast_to(ink, a.shape).copy()
-        else:
-            m = res < best_res
-            best_res[m], best_t[m], best_col[m] = res[m], t[m], ink
-    return Image.fromarray(np.dstack([best_col, best_t * 255]).astype(np.uint8), "RGBA")
+def on_cream(im, pad=0, size=None):
+    w, h = size or (im.width + 2 * pad, im.height + 2 * pad)
+    out = Image.new("RGBA", (w, h), CREAM + (255,))
+    out.alpha_composite(im, ((w - im.width) // 2, (h - im.height) // 2))
+    return out.convert("RGB")
 
 
-def trim(im):
-    return im.crop(im.getbbox())
+# Header: horizontal logo with the viewBox trimmed to the drawing, so it fills the header height.
+svg = open(D + "fluxs-logo-horizontal.svg").read()
+svg = re.sub(r'viewBox="[^"]*" width="[^"]*" height="[^"]*"', 'viewBox="24 31 803 165" width="803" height="165"', svg, count=1)
+open(D + "fluxs-header.svg", "w").write(svg)
 
+# Favicons from the symbol, centred on a square.
+sym = raster(D + "fluxs-symbol.svg", 1024)
+sym = sym.crop(sym.getbbox())
+s = int(max(sym.size) * 1.08)
+sq = Image.new("RGBA", (s, s), (0, 0, 0, 0))
+sq.alpha_composite(sym, ((s - sym.width) // 2, (s - sym.height) // 2))
+for n in (32, 180):
+    sq.resize((n, n), Image.LANCZOS).save(D + f"favicon-{n}.png")
+on_cream(sq.resize((150, 150), Image.LANCZOS), size=(180, 180)).save(D + "apple-touch-icon.png")
 
-sq = transparent(D + "fluxs-square.png")
-wd = transparent(D + "fluxs-wide.png")
-sq.save(D + "fluxs-square-transparent.png")
-wd.save(D + "fluxs-wide-transparent.png")
-
-# Header: full wide logo with tagline, trimmed, 2x the 56 px display height.
-hdr = trim(wd)
-hdr.thumbnail((10000, 112), Image.LANCZOS)
-hdr.save(D + "fluxs-header.png")
-
-# Favicons: waves + cylinder only, centred on a square.
-icon = trim(sq.crop((0, 0, 880, 520)))
-s = max(icon.size) + 40
-sqr = Image.new("RGBA", (s, s), (0, 0, 0, 0))
-sqr.alpha_composite(icon, ((s - icon.width) // 2, (s - icon.height) // 2))
-for n in (180, 32):
-    sqr.resize((n, n), Image.LANCZOS).save(D + f"favicon-{n}.png")
-bg, _ = colors(D + "fluxs-square.png")
-touch = Image.new("RGBA", (s, s), tuple(int(c) for c in bg) + (255,))
-touch.alpha_composite(sqr)
-touch.resize((180, 180), Image.LANCZOS).convert("RGB").save(D + "apple-touch-icon.png")
-
-print("ink colours:", ["#%02X%02X%02X" % tuple(int(x) for x in c) for c in colors(D + "fluxs-wide.png")[1]])
+# Link previews (og:image) and search engines: compact logo on cream, 1200x1200.
+comp = raster(D + "fluxs-logo-compact.svg", 900)
+on_cream(comp, size=(1200, 1200)).save(D + "fluxs-og.png", optimize=True)
+print("done")

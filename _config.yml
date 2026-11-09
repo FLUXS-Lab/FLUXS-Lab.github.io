@@ -16,11 +16,11 @@ address: |
 url: "https://flexlab-sapienza.github.io"
 baseurl: ""
 # Logo used by search engines and link previews (jekyll-seo-tag).
-logo: /assets/img/logo/fluxs-square.png
+logo: /assets/img/logo/fluxs-og.png
 defaults:
   - scope: { path: "" }
     values:
-      image: /assets/img/logo/fluxs-square.png
+      image: /assets/img/logo/fluxs-og.png
 
 # Names shown in bold in publication author lists.
 highlight_authors:
