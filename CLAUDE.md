@@ -10,7 +10,7 @@ Pages injects the Primer theme. English only.
 - Internal links go through `| relative_url`.
 - Logos in `assets/img/logo/`: SVG originals `fluxs-symbol.svg`, `fluxs-logo-compact.svg`,
   `fluxs-logo-horizontal.svg` (do not edit); header SVG, favicons and `fluxs-og.png` are derived from them with
-  `python3 tools/make_logos.py`. Logo colors: navy `#1B2A4A` (`--blue`),
+  `python3 tools/make_logos.py`, which also refreshes the `LOGOS/` kit (SVG + PNG, not published on the site). Logo colors: navy `#1B2A4A` (`--blue`),
   maroon `#822433`.
 - Design: one CSS file, fonts Archivo (headings) + Source Sans 3 (body), palette tokens in `:root`
   (maroon `#822433`, ink, muted, line, panel). The only JS is `assets/js/flow.js` (home hero canvas).

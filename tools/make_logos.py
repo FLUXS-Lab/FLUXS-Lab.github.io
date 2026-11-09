@@ -2,7 +2,7 @@
 
 Originals (as provided, do not edit): assets/img/logo/fluxs-symbol.svg,
 fluxs-logo-compact.svg, fluxs-logo-horizontal.svg.
-Run from the repo root on macOS (uses `sips` to rasterize):  python3 tools/make_logos.py
+Also refreshes the LOGOS/ kit (SVG + PNG). Run from the repo root on macOS (uses `sips` to rasterize):  python3 tools/make_logos.py
 Needs Pillow.
 """
 import re
@@ -48,4 +48,16 @@ on_cream(sq.resize((150, 150), Image.LANCZOS), size=(180, 180)).save(D + "apple-
 # Link previews (og:image) and search engines: compact logo on cream, 1200x1200.
 comp = raster(D + "fluxs-logo-compact.svg", 900)
 on_cream(comp, size=(1200, 1200)).save(D + "fluxs-og.png", optimize=True)
+# LOGOS/: logo kit for people outside the site (slides, posters, documents).
+# SVG originals plus PNG renders, transparent and on the cream background.
+import os
+import shutil
+
+K = "LOGOS/"
+os.makedirs(K, exist_ok=True)
+for name, width in (("fluxs-symbol", 1600), ("fluxs-logo-compact", 1600), ("fluxs-logo-horizontal", 3000)):
+    shutil.copyfile(D + name + ".svg", K + name + ".svg")
+    im = raster(D + name + ".svg", width)
+    im.save(K + name + "-transparent.png", optimize=True)
+    on_cream(im).save(K + name + "-cream.png", optimize=True)
 print("done")
