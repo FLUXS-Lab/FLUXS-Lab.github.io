@@ -46,19 +46,10 @@ wd = transparent(D + "fluxs-wide.png")
 sq.save(D + "fluxs-square-transparent.png")
 wd.save(D + "fluxs-wide-transparent.png")
 
-# Header: mark + FLUXS letters, without the tagline (unreadable at 40 px).
-mark, letters = trim(wd.crop((0, 0, 820, 560))), trim(wd.crop((840, 0, 1960, 380)))
-gap, h = 70, max(mark.height, letters.height)
-hdr = Image.new("RGBA", (mark.width + gap + letters.width, h), (0, 0, 0, 0))
-hdr.alpha_composite(mark, (0, (h - mark.height) // 2))
-hdr.alpha_composite(letters, (mark.width + gap, (h - letters.height) // 2))
-hdr.thumbnail((10000, 120), Image.LANCZOS)
+# Header: full wide logo with tagline, trimmed, 2x the 56 px display height.
+hdr = trim(wd)
+hdr.thumbnail((10000, 112), Image.LANCZOS)
 hdr.save(D + "fluxs-header.png")
-
-# Footer: wide logo with tagline, on its cream background.
-foot = Image.open(D + "fluxs-wide.png").convert("RGB")
-foot.thumbnail((640, 640), Image.LANCZOS)
-foot.save(D + "fluxs-footer.png", optimize=True)
 
 # Favicons: waves + cylinder only, centred on a square.
 icon = trim(sq.crop((0, 0, 880, 520)))
