@@ -1,7 +1,7 @@
 # FLUXS website
 
 FLUXS = Fluid Experiments at Sapienza (formerly FLEXLab): experimental fluid dynamics group (PI: Giovanni Paolo Romano). Jekyll site published by GitHub Pages
-from `main` of `FLEXLab-Sapienza/FLEXLab-Sapienza.github.io` (served at the root URL, `baseurl: ""`).
+from `main` of `FLUXS-Lab/FLUXS-Lab.github.io` at https://fluxs-lab.github.io (root URL, `baseurl: ""`).
 Only plugins in the `github-pages` gem whitelist may be used; `theme: null` must stay, otherwise
 Pages injects the Primer theme. English only.
 

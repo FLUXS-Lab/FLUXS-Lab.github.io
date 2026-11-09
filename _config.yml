@@ -12,8 +12,8 @@ address: |
   Via Eudossiana 18
   00184 Rome, Italy
 
-# Site served at the org root: https://flexlab-sapienza.github.io (repo named flexlab-sapienza.github.io)
-url: "https://flexlab-sapienza.github.io"
+# Site served at the org root: https://fluxs-lab.github.io (repo FLUXS-Lab/FLUXS-Lab.github.io)
+url: "https://fluxs-lab.github.io"
 baseurl: ""
 # Logo used by search engines and link previews (jekyll-seo-tag).
 logo: /assets/img/logo/fluxs-og.png
