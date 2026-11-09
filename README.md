@@ -1,6 +1,6 @@
-# FLEXLab – Sapienza
+# FLUXS – Fluid Experiments at Sapienza
 
-Website of FLEXLab, Sapienza University of Rome. Built with Jekyll and published with GitHub Pages.
+Website of FLUXS (Fluid Experiments at Sapienza), Sapienza University of Rome. Built with Jekyll and published with GitHub Pages.
 
 ## Where to edit content
 

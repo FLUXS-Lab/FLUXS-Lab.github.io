@@ -1,5 +1,6 @@
 :root {
   --maroon: #822433;          /* Sapienza red */
+  --blue: #1D4E89;            /* FLUXS logo blue */
   --maroon-dark: #6a1c29;
   --ink: #1F2933;
   --muted: #5B6670;
@@ -29,9 +30,9 @@ h3 { font-weight: 600; font-size: 1.3rem; margin: 0 0 .4rem; }
 /* Header */
 .site-header { background: var(--bg); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 10; }
 .header-inner { display: flex; align-items: center; justify-content: space-between; min-height: 64px; flex-wrap: wrap; }
-.brand { display: flex; align-items: baseline; gap: .7rem; color: var(--ink); }
+.brand { display: flex; align-items: center; gap: .9rem; color: var(--ink); }
+.brand-logo { display: block; height: 40px; width: auto; }
 .brand:hover { text-decoration: none; }
-.brand-name { font-family: var(--display); font-weight: 800; font-size: 1.45rem; color: var(--maroon); }
 .brand-sub { font-size: .85rem; color: var(--muted); }
 .site-nav a { margin-left: 1.5rem; color: var(--ink); font-weight: 600; padding: 4px 0; border-bottom: 2px solid transparent; }
 .site-nav a:hover { color: var(--maroon); text-decoration: none; }
@@ -47,7 +48,8 @@ h3 { font-weight: 600; font-size: 1.3rem; margin: 0 0 .4rem; }
 }
 .hero-text { position: relative; z-index: 1; width: 100%; padding-top: 3rem; padding-bottom: 3rem; }
 .hero-text > * { max-width: 34rem; }
-.hero h1 { font-size: 4rem; color: var(--maroon); margin-bottom: .6rem; }
+.hero h1 { font-size: 4rem; color: var(--blue); letter-spacing: .04em; margin-bottom: .6rem; }
+.hero h1 .s { color: var(--maroon); }
 .hero .lead { color: var(--ink); }
 .btn { display: inline-block; padding: .6rem 1.2rem; border-radius: 4px; background: var(--maroon); color: #fff; font-weight: 600; border: 2px solid var(--maroon); margin: 0 .5rem .5rem 0; }
 .btn:hover { background: var(--maroon-dark); border-color: var(--maroon-dark); text-decoration: none; }

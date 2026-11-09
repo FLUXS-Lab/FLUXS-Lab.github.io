@@ -1,5 +1,6 @@
-# FLEXLab – Sapienza University of Rome
-title: FLEXLab
+# FLUXS – Fluid Experiments at Sapienza
+title: FLUXS
+full_name: Fluid Experiments at Sapienza
 subtitle: Experimental Fluid Dynamics · Sapienza University of Rome
 description: >-
   We study real flows with optical and anemometric measurements, both to understand
@@ -14,6 +15,12 @@ address: |
 # Site served at the org root: https://flexlab-sapienza.github.io (repo named flexlab-sapienza.github.io)
 url: "https://flexlab-sapienza.github.io"
 baseurl: ""
+# Logo used by search engines and link previews (jekyll-seo-tag).
+logo: /assets/img/logo/fluxs-square.png
+defaults:
+  - scope: { path: "" }
+    values:
+      image: /assets/img/logo/fluxs-square.png
 
 # Names shown in bold in publication author lists.
 highlight_authors:
