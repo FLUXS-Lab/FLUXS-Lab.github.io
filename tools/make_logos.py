@@ -16,10 +16,19 @@ CREAM = (251, 248, 243)  # logo background colour
 
 
 def raster(svg, width):
-    """SVG -> RGBA PIL image `width` px wide (transparent background)."""
-    with tempfile.NamedTemporaryFile(suffix=".png") as tmp:
-        subprocess.run(["sips", "-s", "format", "png", "--resampleWidth", str(width), svg, "--out", tmp.name],
-                       check=True, capture_output=True)
+    """SVG -> RGBA PIL image `width` px wide (transparent background).
+
+    sips draws an SVG at its own width/height and then rescales the bitmap, which blurs it, so we
+    first rewrite width/height (keeping the viewBox) to the target size in a temporary copy.
+    """
+    src = open(svg).read()
+    vb = [float(x) for x in re.search(r'viewBox="([^"]*)"', src).group(1).split()]
+    height = round(width * vb[3] / vb[2])
+    src = re.sub(r'(<svg[^>]*?) width="[^"]*" height="[^"]*"', rf'\1 width="{width}" height="{height}"', src, count=1)
+    with tempfile.NamedTemporaryFile(suffix=".svg", mode="w") as s, tempfile.NamedTemporaryFile(suffix=".png") as tmp:
+        s.write(src)
+        s.flush()
+        subprocess.run(["sips", "-s", "format", "png", s.name, "--out", tmp.name], check=True, capture_output=True)
         return Image.open(tmp.name).convert("RGBA")
 
 
