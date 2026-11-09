@@ -5,8 +5,9 @@
       <p class="footer-acronym">{{ site.full_name }}</p>
       <p>{{ site.affiliation }}<br>{{ site.address | newline_to_br }}</p>
     </div>
-    <div>
+    <div class="footer-right">
       <p>&copy; {{ site.time | date: "%Y" }} {{ site.title }}, {{ site.affiliation }}</p>
+      <img class="footer-logo" src="{{ '/assets/img/logo/fluxs-footer.png' | relative_url }}" alt="{{ site.title }} – {{ site.full_name }}" width="320" height="91" loading="lazy">
     </div>
   </div>
 </footer>
