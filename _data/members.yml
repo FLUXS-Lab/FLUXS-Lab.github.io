@@ -41,11 +41,10 @@
     - name: Mohammad Moradi
       role: Research Fellow
       photo: moradi.jpg
+
+- section: M.Sc. Students
+  people:
     - name: Gianluca Viti
       role: M.Sc. Thesis Student
-
-- section: Past members
-  show_empty: true
-  people: []
-  # - name: First Last
-  #   role: PhD 2023, now at Company
+    - name: Giacomo Alonzi
+      role: M.Sc. Thesis Student
