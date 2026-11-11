@@ -11,7 +11,7 @@ permalink: /team/
     {% for p in group.people %}
     <div class="person">
       {% if p.photo %}
-        <img class="pic" src="{{ '/assets/img/people/' | append: p.photo | relative_url }}" alt="Photo of {{ p.name }}">
+        <img class="pic" src="{{ '/assets/img/people/' | append: p.photo | relative_url }}?v={{ site.time | date: '%s' }}" alt="Photo of {{ p.name }}">
       {% else %}
         {% assign parts = p.name | split: "," | first | split: " " %}
         <div class="pic" aria-hidden="true">{{ parts.first | slice: 0 }}{{ parts.last | slice: 0 }}</div>
