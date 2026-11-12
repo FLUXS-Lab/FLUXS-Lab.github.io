@@ -1,6 +1,13 @@
 # Selected journal articles (2020 onward), newest first. Each entry needs a DOI.
 # Fields: authors, title, venue, volume, pages, year, doi
 
+- authors: "M. Pizzoli, F. Saltari, M. T. Migliorino, F. Mastroddi, F. Gambioli"
+  title: "Modeling non-isothermal vertical sloshing via experimentally-driven Froude-dependent Nusselt number"
+  venue: "Nonlinear Dynamics"
+  volume: "114"
+  pages: "443"
+  year: 2026
+  doi: "10.1007/s11071-025-12098-9"
 - authors: "E. Domini, G. Moscato, A. Lago, F. Testa, F. M. Paluello, G. P. Romano"
   title: "RoDaVi – a mixed drag-lift wind turbine: experimental investigation on performances and flows"
   venue: "Energy"
@@ -8,6 +15,13 @@
   pages: "139729"
   year: 2026
   doi: "10.1016/j.energy.2025.139729"
+- authors: "M. Fabiani, S. Cassese, V. M. Capone, M. T. Migliorino, S. Mungiguerra, D. Bianchi, F. Nasuti, R. Savino"
+  title: "Numerical and experimental analysis of a 200 N class GOX-ABS hybrid rocket engine"
+  venue: "Aerospace Science and Technology"
+  volume: "168"
+  pages: "111157"
+  year: 2026
+  doi: "10.1016/j.ast.2025.111157"
 - authors: "G. Moscato, G. P. Romano"
   title: "Aerodynamic performances and near wake of an Ahmed body under unsteady flow conditions"
   venue: "Experimental Thermal and Fluid Science"
