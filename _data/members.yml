@@ -42,3 +42,12 @@
     - name: Mohammad Moradi
       role: Research Fellow
       photo: moradi.jpg
+
+- section: M.Sc. Students
+  people:
+    - name: Gianluca Viti
+      role: M.Sc. Thesis Student
+      photo: viti.jpg
+    - name: Giacomo Alonzi
+      role: M.Sc. Thesis Student
+      photo: alonzi.jpg
