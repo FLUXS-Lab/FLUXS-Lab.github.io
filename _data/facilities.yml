@@ -10,10 +10,6 @@
       value: Subsonic, open test section
     - label: Test section
       value: 1 m diameter, 1.5 m long
-    - label: Maximum speed
-      value: 50 m/s
-    - label: Overall size
-      value: approx. 15 m × 2 m × 4 m (L × W × H)
   equipment:
     - Three-component force balance
     - Pitot tube system for velocity measurements
