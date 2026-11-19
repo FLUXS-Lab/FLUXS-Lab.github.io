@@ -31,8 +31,17 @@ h3 { font-weight: 600; font-size: 1.3rem; margin: 0 0 .4rem; }
 .site-header { background: var(--bg); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 10; }
 .header-inner { display: flex; align-items: center; justify-content: space-between; min-height: 64px; flex-wrap: wrap; }
 .brand { display: flex; align-items: center; gap: .9rem; color: var(--ink); }
-.brand-logo { display: block; height: 56px; width: auto; }
-@media (max-width: 720px) { .brand-logo { height: 46px; } }
+.brand-mark { display: block; height: 42px; width: auto; }
+.brand-text { display: flex; flex-direction: column; line-height: 1; }
+.brand-name { font-family: var(--display); font-weight: 800; font-size: 1.9rem; letter-spacing: .04em; color: var(--blue); }
+.brand-name .s { color: var(--maroon); }
+.brand-sub { font-weight: 600; font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; color: var(--maroon); margin-top: 5px; }
+@media (max-width: 720px) {
+  .brand { gap: .7rem; }
+  .brand-mark { height: 34px; }
+  .brand-name { font-size: 1.6rem; }
+  .brand-sub { font-size: .55rem; }
+}
 .brand:hover { text-decoration: none; }
 .site-nav a { margin-left: 1.5rem; color: var(--ink); font-weight: 600; padding: 4px 0; border-bottom: 2px solid transparent; }
 .site-nav a:hover { color: var(--maroon); text-decoration: none; }
