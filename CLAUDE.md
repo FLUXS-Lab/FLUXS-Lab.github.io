@@ -8,10 +8,12 @@ Pages injects the Primer theme. English only.
 - Content lives in `_data/*.yml` (research, techniques, facilities, members, teaching, phd, publications);
   pages are thin Liquid templates over that data. Empty member groups are hidden automatically.
 - Internal links go through `| relative_url`.
-- Logos in `assets/img/logo/`: SVG originals `fluxs-symbol.svg`, `fluxs-logo-compact.svg`,
-  `fluxs-logo-horizontal.svg` (do not edit); header SVG, favicons and `fluxs-og.png` are derived from them with
-  `python3 tools/make_logos.py`, which also refreshes the `LOGOS/` kit (SVG + PNG, not published on the site). Logo colors: navy `#1B2A4A` (`--blue`),
-  maroon `#822433`.
+- Logos in `assets/img/logo/`: SVG originals `fluxs-symbol.svg`, `fluxs-logo-horizontal.svg`,
+  `fluxs-logo-vertical.svg` (do not edit). The header uses the symbol (`fluxs-mark.svg`, trimmed) next to the
+  FLUXS wordmark as HTML text. `fluxs-mark.svg`, `apple-touch-icon.png` and `fluxs-og.png` are derived with
+  `python3 tools/make_logos.py`; favicons (`favicon-32.png`, `favicon-180.png`, `/favicon.ico`) are copied
+  from the designer's kit in `LOGOS/` (SVG, PNG, PDF, not published on the site). Logo colors: navy `#1B2A4A`
+  (`--blue`), maroon `#822433`.
 - Design: one CSS file, fonts Archivo (headings) + Source Sans 3 (body), palette tokens in `:root`
   (maroon `#822433`, ink, muted, line, panel). The only JS is `assets/js/flow.js` (home hero canvas).
 - `noindex: true` in `_config.yml` keeps the site out of search engines during the preview phase;
